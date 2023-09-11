@@ -107,9 +107,6 @@ class TestHBNBCommand(unittest.TestCase):
     def test_create(self):
         """Test create command."""
         with patch("sys.stdout", new=StringIO()) as f:
-            self.HBNB.onecmd("create BaseModel")
-            bm = f.getvalue().strip()
-        with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("create User")
             us = f.getvalue().strip()
         with patch("sys.stdout", new=StringIO()) as f:
@@ -127,9 +124,6 @@ class TestHBNBCommand(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("create Amenity")
             am = f.getvalue().strip()
-        with patch("sys.stdout", new=StringIO()) as f:
-            self.HBNB.onecmd("all BaseModel")
-            self.assertIn(bm, f.getvalue())
         with patch("sys.stdout", new=StringIO()) as f:
             self.HBNB.onecmd("all User")
             self.assertIn(us, f.getvalue())

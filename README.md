@@ -1,104 +1,36 @@
-<h1 align="center">HolbertonBnB</h1>
-<p align="center">An AirBnB clone.</p>
+---
+<h1 align="center">0x02. AirBnB clone</h1>
+<p align="center">MySQL.</p>
 
-<p align="center">
-  <img src="https://github.com/bdbaraban/AirBnB_clone_v2/blob/master/assets/hbnb_logo.png"
-	    alt="HolbertonBnB logo">
-</p>
-
-## Description :house:
-
-HolbertonBnB is a complete RESTful web application, integrating file and
-database (MySQL) storage in a back-end API with front-end interfacing in a
-clone of AirBnB. The front-end is designed using HTML5/CSS3 and is served using
-Python Flask. The application is configured on a distributed system - two web
-servers and one load balancer - with Nginx and HAProxy.
-
-HolbertonBnB is still in active development, with complete functionality set to
-deploy in the coming month:
-
-* Complete integration of a RESTful API
-* Full configuration of website with domain name
-* Serving of dynamic content using JavaScript
-
-<p align="center">
-  <img src="https://github.com/bdbaraban/AirBnB_clone_v2/blob/master/assets/hbnb_stack.png"
-	    alt="HolbertonBnB stack">
-</p>
+![N|Solid](https://github.com/jdrestre/pictures-holberton-projects/blob/master/AirBnB_clone_v2_MySQL/hbnb_logo.png)
 
 ---
+## Description Project
 
-## NOTE TO 2019 LYFT SOFTWARE ENGINEERING APPRENTICESHIP RECRUITER
-
-This web app has been the capstone project of my full-stack education at
-Holberton School and I want to show it off as a demonstration of all the
-skills I've learned at this school.
-
-With that said, I must clarify that it is not complete. As mentioned, the
-clone is a work-in-progress, with full deployment as a RESTful API still to
-come. Finishing touches will be occurring over the next month, my final at
-Holberton.
-
-Recognizing that I am sharing a near-complete project, I additionally put
-together a small Flask app according to the specifications described in the
-application. Please take a look at this separate repository here:
-
-https://github.com/bdbaraban/lyft_apprenticeship_application
-
-Nonetheless, allow me to talk a little more about this AirBnB clone. This
-repository is the second iteration of the project. In the first version
-(viewable [here](https://github.com/bdbaraban/AirBnB_clone)), I, together
-with a cohort mate, built up the initial file storage back-end and
-console from scratch. We pair programmed for most all of this version one work.
-
-In this second iteration of the project, I, together with a new partner,
-inherited a different version of the same back-end written by a pair of
-Holberton students from an older cohort. We then pair programmed
-to build up the database storage engine of the back-end.
-
-In between each version, I put together an entire CSS-styled HTML web page
-for the project. This front-end development was coded independently, although
-the HTML files I personally wrote are only posted in
-[version one](https://github.com/bdbaraban/AirBnB_clone) (the
-[web_static](./web_static) folder in this directory was included in the
-fork). Addtionally, all Shell, Puppet, and Fabric deployment scripts/manifests
-were coded myself.
-
-The README's in both repositories were almost exclusively written myself.
-
-I hope this helps clear things up. I apologize for the confusing versioning, but
-the takeaway is that I've been directly involved in coding at least _an_ implementation
-of everything in this repository. And hey, software development is no fun without
-some confusing version control, right? :sweat_smile: :sob:
-
-Please let me know if you have any questions!
+![N|Solid](https://github.com/jdrestre/pictures-holberton-projects/blob/master/AirBnB_clone_v2_MySQL/mapping_project_mysql_airbnb-hbnb_step2.png)
 
 ---
+## General
+- What is Unit testing and how to implement it in a large project
+- What is *args and how to use it
+- What is **kwargs and how to use it
+- How to handle named arguments in a function
+- How to create a MySQL database
+- How to create a MySQL user and grant it privileges
+- What ORM means
+- How to map a Python Class to a MySQL table
+- How to handle 2 different storage engines with the same codebase
+- How to use environment variables
 
-### Static :page_facing_up:
+---
+## Diagram Class
+This diagram shows the relationship between all the classes created:
 
-The front-end of HolbertonBnB was designed from scratch using HTML5/CSS3 pages
-integrated using Flask. While the front-end has not yet been officially deployed,
-screenshots are viewable in the README of the [web_flask](./web_flask) directory.
+![N|Solid](https://github.com/jdrestre/pictures-holberton-projects/blob/master/AirBnB_clone_v2_MySQL/AirBnb_DB_diagrammclasses.jpg)
 
-### Classes :cl:
 
-HolbertonBnB supports the following classes:
-
-* BaseModel
-* User
-* State
-* City
-* Amenity
-* Place
-* Review
-
-## Storage :baggage_claim:
-
-The above classes are handled by one of either two abstracted storage engines,
-depending on the call - [FileStorage](./models/engine/file_storage.py) or
-[DBStorage](./models/engine/db_storage.py).
-
+---
+## How to start it
 ### FileStorage
 
 The default mode.
@@ -127,17 +59,19 @@ defined on the MySQL server. This repository includes scripts
 to set up `hbnb_dev_db` and `hbnb_test_db` databases in a MySQL server,
 respectively.
 
-## Console :computer:
 
+### Console
 The console is a command line interpreter that permits management of the backend
 of HolbertonBnB. It can be used to handle and manipulate all classes utilized by
 the application (achieved by calls on the `storage` object defined above).
 
+---
+## How to use it
+
 ### Using the Console
 
 The HolbertonBnB console can be run both interactively and non-interactively.
-To run the console in non-interactive mode, pipe any command(s) into an execution
-of the file `console.py` at the command line.
+To run the console in non-interactive mode, pipe any command(s) into an execution of the file `console.py` at the command line.
 
 ```
 $ echo "help" | ./console.py
@@ -150,22 +84,11 @@ EOF  all  count  create  destroy  help  quit  show  update
 $
 ```
 
-Alternatively, to use the HolbertonBnB console in interactive mode, run the
-file `console.py` by itself:
+Alternatively, to use the HolbertonBnB console in interactive mode, run the file `console.py` by itself:
 
 ```
 $ ./console.py
 ```
-
-Remember, the console can be run with `storage` instantiated in either `FileStorage`
-or `DBStorage` mode. The above examples instantiate `FileStorage` by default, but
-`DBStorage` can be instantiated like so:
-
-```
-$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
-```
-
-The console functions identically regardless of the `storage` mode.
 
 While running in interactive mode, the console displays a prompt for input:
 
@@ -188,18 +111,12 @@ $ ./console.py
 (hbnb) EOF
 $
 ```
-
-### Console Commands
-
+---
+## Examples
 The HolbertonBnB console supports the following commands:
 
 #### create
 * Usage: `create <class> <param 1 name>=<param 1 value> <param 2 name>=<param 2 value> ...`
-
-Creates a new instance of a given class. The class' ID is printed and
-the instance is saved to the file `file.json`. When passing parameter key/value
-pairs, any underscores contained in value strings are replaced by spaces.
-
 ```
 $ ./console.py
 (hbnb) create BaseModel
@@ -215,7 +132,6 @@ Model", "id": "119be863-6fe5-437e-a180-b9892e8746b8"}, {'id': 'd80e0344-63eb-43
 842160), 'updated_at': datetime.datetime(2017, 11, 10, 4, 41, 7, 842235), 'name
 ': 'California'}}
 ```
-
 #### show
 * Usage: `show <class> <id>` or `<class>.show(<id>)`
 
@@ -237,26 +153,6 @@ c3240b29f46', 'created_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828),
 'updated_at': datetime.datetime(2019, 2, 17, 21, 34, 3, 635828)}
 (hbnb)
 ```
-
-#### destroy
-* Usage: `destroy <class> <id>` or `<class>.destroy(<id>)`
-
-Deletes a class instance based on a given id.
-
-```
-$ ./console.py
-(hbnb) create State
-d2d789cd-7427-4920-aaae-88cbcf8bffe2
-(hbnb) create Place
-3e-8329-4f47-9947-dca80c03d3ed
-(hbnb)
-(hbnb) destroy State d2d789cd-7427-4920-aaae-88cbcf8bffe2
-(hbnb) Place.destroy(03486a3e-8329-4f47-9947-dca80c03d3ed)
-(hbnb) quit
-$ cat file.json ; echo ""
-{}
-```
-
 #### all
 * Usage: `all` or `all <class>` or `<class>.all()`
 
@@ -305,68 +201,47 @@ c3-f4bf-425e-b1d4-165f52c6ff81) {'updated_at': datetime.datetime(2019, 2, 17, 2
 ), 'id': 'fce2124c-8537-489b-956e-22da455cbee8'}"]
 (hbnb)
 ```
-
-#### count
-* Usage: `count <class>` or `<class>.count()`
-
-Retrieves the number of instances of a given class.
-
-```
-$ ./console.py
-(hbnb) create Place
-12c73223-f3d3-4dec-9629-bd19c8fadd8a
-(hbnb) create Place
-aa229cbb-5b19-4c32-8562-f90a3437d301
-(hbnb) create City
-22a51611-17bd-4d8f-ba1b-3bf07d327208
-(hbnb)
-(hbnb) count Place
-2
-(hbnb) city.count()
-1
-(hbnb)
-```
-
-#### update
-* Usage: `update <class> <id> <attribute name> "<attribute value>"`
-
-Updates a class instance based on a given id with a given key/value attribute
-pair or dictionary of attribute pairs. If `update` is called with a single
-key/value attribute pair, only "simple" attributes can be updated (ie. not
-`id`, `created_at`, and `updated_at`).
-
-```
-$ ./console.py
-(hbnb) create User
-6f348019-0499-420f-8eec-ef0fdc863c02
-(hbnb)
-(hbnb) update User 6f348019-0499-420f-8eec-ef0fdc863c02 first_name "Holberton" 
-(hbnb) show User 6f348019-0499-420f-8eec-ef0fdc863c02
-[User] (6f348019-0499-420f-8eec-ef0fdc863c02) {'created_at': datetime.datetime(
-2019, 2, 17, 21, 54, 39, 234382), 'first_name': 'Holberton', 'updated_at': date
-time.datetime(2019, 2, 17, 21, 54, 39, 234382), 'id': '6f348019-0499-420f-8eec-
-ef0fdc863c02'}
-(hbnb)
-```
-
+---
 ## Testing :straight_ruler:
-
-Unittests for the HolbertonBnB project are defined in the [tests](./tests)
-folder. To run the entire test suite simultaneously, execute the following command:
+Command used for unittest:
 
 ```
 $ python3 unittest -m discover tests
 ```
 
-Alternatively, you can specify a single test file to run at a time:
+Or you can specify a single test file:
 
 ```
 $ python3 unittest -m tests/test_console.py
 ```
 
-## Authors :black_nib:
-* **Brennan D Baraban** <[bdbaraban](https://github.com/bdbaraban)>
-* **Samie Azad** <[sazad44](https://github.com/sazad44)>
-* **Andrew Lindburg** <[atlindburg](https://github.com/atlindburg)>
-* **Kevin Yook** <[yook00627](https://github.com/yook00627)>
-* **Miranda Evans** <miranda.r.evans@gmail.com>
+
+---
+## Task Project
+---
+File Name|Task Name|Task Description
+---|---|---
+[AirBnB_clone_v2](https://github.com/monoprosito/AirBnB_clone_v2)|0. Fork me if you can!|Repository for project AirBnB-clone MySQL
+[AirBnB_clone_v2](https://github.com/monoprosito/AirBnB_clone_v2/tree/master/tests)|1. Bug free!|unittest files
+[console.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/console.py), [models/](https://github.com/monoprosito/AirBnB_clone_v2/tree/master/models), [tests/](https://github.com/monoprosito/AirBnB_clone_v2/tree/master/tests)|2. Console improvements|Update the def do_create(self, arg): function of your command interpreter (console.py) to allow for object creation with given parameters
+[setup_mysql_dev.sql](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/setup_mysql_dev.sql)|3. MySQL setup development|Write a script that prepares a MySQL server for the project
+[setup_mysql_test.sql](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/setup_mysql_test.sql)|4. MySQL setup test|Write a script that prepares a MySQL server for the project
+[models/engine/file_storage.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/engine/file_storage.py)|5. Delete object|Update FileStorage: (models/engine/file_storage.py)
+[models/base_model.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/base_model.py), [models/city.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/city.py), [models/state.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/state.py), [models/engine/db_storage.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/engine/db_storage.py), [models/__init__.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/__init__.py)|6. DBStorage - States and Cities|It’s time to change your storage engine and use SQLAlchemy
+[models/user.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/user.py)|7. DBStorage - User|Update User: (models/user.py)
+[models/place.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/place.py), [models/user.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/user.py), [models/city.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/city.py)|8. DBStorage - Place|Update Place: (models/place.py)
+[models/review.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/review.py), [models/user.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/user.py), [models/place.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/place.py)|9. DBStorage - Review|Update Review: (models/review.py)
+[models/amenity.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/amenity.py), [models/place.py](https://github.com/monoprosito/AirBnB_clone_v2/blob/master/models/place.py)|10. DBStorage - Amenity... and BOOM!|Update Amenity: (models/amenity.py)
+
+
+---
+## Authors
+
+- Santiago Arboleda L. [@msarboledal](https://twitter.com/msarboledal)
+- Juan David Restrepo Z. [@jdrestre](https://twitter.com/jdrestre)
+- Miranda Evans miranda.r.evans@gmail.com
+- Kevin Yook kevin.yook@holbertonschool.com
+
+
+
+![N|Solid](https://www.holbertonschool.com/holberton-logo.png) ![N|Solid](https://intranet.hbtn.io/assets/holberton-logo-coral-27055cb2f875eb10bf3b3942e52a24581bc0667695bdc856d4f08b469b678000.png)
