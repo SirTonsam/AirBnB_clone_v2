@@ -1,51 +1,53 @@
 #!/usr/bin/python3
-"""Starts a Flask web application
-"""
-from flask import Flask
-from flask import render_template
+'''A simple Flask web application.
+'''
+from flask import Flask, render_template
+
+
+app = Flask(__name__)
+'''The Flask application instance.'''
+app.url_map.strict_slashes = False
+
+
+@app.route('/')
+def index():
+    '''The home page.'''
+    return 'Hello HBNB!'
+
+
+@app.route('/hbnb')
+def hbnb():
+    '''The hbnb page.'''
+    return 'HBNB'
+
+
+@app.route('/c/<text>')
+def c_page(text):
+    '''The c page.'''
+    return 'C {}'.format(text.replace('_', ' '))
+
+
+@app.route('/python/<text>')
+@app.route('/python', defaults={'text': 'is cool'})
+def python_page(text):
+    '''The python page.'''
+    return 'Python {}'.format(text.replace('_', ' '))
+
+
+@app.route('/number/<int:n>')
+def number_page(n):
+    '''The number page.'''
+    return '{} is a number'.format(n)
+
+
+@app.route('/number_template/<int:n>')
+def number_template(n):
+    '''The number_template page.'''
+    ctxt = {
+        'n': n
+    }
+    return render_template('5-number.html', **ctxt)
+
 
 if __name__ == '__main__':
-    app = Flask(__name__)
-
-    @app.route('/', strict_slashes=False)
-    def index():
-        """Display 'Hello HBNB!'
-        """
-        return 'Hello HBNB!'
-
-    @app.route('/hbnb', strict_slashes=False)
-    def hbnb():
-        """Display 'HBNB'
-        """
-        return 'HBNB'
-
-    @app.route('/c/<text>', strict_slashes=False)
-    def c(text):
-        """Display “C ” followed by the value of
-        the text variable (replace underscore _
-        symbols with a space)
-        """
-        return 'C ' + text.replace('_', ' ')
-
-    @app.route('/python/')
-    @app.route('/python/<text>', strict_slashes=False)
-    def python(text="is cool"):
-        """Display “Python ”, followed by the value of
-        the text variable (replace underscore _
-        symbols with a space )
-        """
-        return 'Python ' + text.replace('_', ' ')
-
-    @app.route('/number/<int:n>', strict_slashes=False)
-    def number(n):
-        """Display “n is a number” only if n is an integer
-        """
-        return str(n) + ' is a number'
-
-    @app.route('/number_template/<int:n>', strict_slashes=False)
-    def number_template(n):
-        """Display a HTML page only if n is an integer
-        """
-        return render_template('5-number.html', n=n)
-
-    app.run('0.0.0.0')
+    app.run(host='0.0.0.0', port='5000')

@@ -1,21 +1,25 @@
 #!/usr/bin/python3
-"""Starts a Flask web application
-"""
+'''A simple Flask web application.
+'''
 from flask import Flask
 
+
+app = Flask(__name__)
+'''The Flask application instance.'''
+app.url_map.strict_slashes = False
+
+
+@app.route('/')
+def index():
+    '''The home page.'''
+    return 'Hello HBNB!'
+
+
+@app.route('/hbnb')
+def hbnb():
+    '''The hbnb page.'''
+    return 'HBNB'
+
+
 if __name__ == '__main__':
-    app = Flask(__name__)
-
-    @app.route('/', strict_slashes=False)
-    def index():
-        """Display 'Hello HBNB!'
-        """
-        return 'Hello HBNB!'
-
-    @app.route('/hbnb', strict_slashes=False)
-    def hbnb():
-        """Display 'HBNB'
-        """
-        return 'HBNB'
-
-    app.run('0.0.0.0')
+    app.run(host='0.0.0.0', port='5000')
