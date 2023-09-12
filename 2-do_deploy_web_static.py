@@ -9,7 +9,7 @@ from fabric.api import *
 from os.path import exists
 from os import getenv, environ
 
-env.hosts = ['18.234.129.239', '54.237.19.91']
+env.hosts = ['100.24.235.57', '107.23.39.87']
 env.user = 'ubuntu'
 env.key_filename = '/home/root/.ssh/id_rsa'
 

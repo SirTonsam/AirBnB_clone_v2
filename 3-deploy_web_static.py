@@ -10,7 +10,7 @@ from os.path import exists
 from os import getenv, environ
 from datetime import datetime
 
-env.hosts = ['18.204.13.18', '54.237.19.91']
+env.hosts = ['100.24.235.57', '107.23.39.87']
 env.user = 'ubuntu'
 env.key_filename = '/home/~/.ssh/id_rsa'
 
