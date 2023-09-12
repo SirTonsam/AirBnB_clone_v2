@@ -1,43 +1,52 @@
 #!/usr/bin/python3
-from datetime import datetime
+"""
+a Fabric script (based on the file 1-pack_web_static.py)
+that distributes an archive to your web servers, using the function do_deploy
+"""
+
+
 from fabric.api import *
-from os import path
+from os.path import exists
+from os import getenv, environ
 
-
-env.hosts = ['35.229.93.37', '54.196.213.127']
-
-
-def do_pack():
-    """Generates a .tgz archive from the contents
-    of the web_static folder of this repository.
-    """
-
-    d = datetime.now()
-    now = d.strftime('%Y%m%d%H%M%S')
-
-    local("mkdir -p versions")
-    local("tar -czvf versions/web_static_{}.tgz web_static".format(now))
+env.hosts = ['100.25.165.191', '3.83.245.148']
+env.user = 'ubuntu'
+env.key_filename = '/home/~/.ssh/id_rsa'
 
 
 def do_deploy(archive_path):
-    """Distributes an .tgz archive through web servers
-    """
+    """Deploys the web static to the server"""
+    if not exists(archive_path):
+        print("path does not exist\n")
+        return False
 
-    if path.exists(archive_path):
-        archive = archive_path.split('/')[1]
-        a_path = "/tmp/{}".format(archive)
-        folder = archive.split('.')[0]
-        f_path = "/data/web_static/releases/{}/".format(folder)
+    try:
+        archive_name = archive_path.split('/')[-1]
+        file_name = archive_name.split('.')[0]
+        sym_link = "/data/web_static/current"
+        release_version = f"/data/web_static/releases/{file_name}/"
 
-        put(archive_path, a_path)
-        run("mkdir -p {}".format(f_path))
-        run("tar -xzf {} -C {}".format(a_path, f_path))
-        run("rm {}".format(a_path))
-        run("mv -f {}web_static/* {}".format(f_path, f_path))
-        run("rm -rf {}web_static".format(f_path))
-        run("rm -rf /data/web_static/current")
-        run("ln -s {} /data/web_static/current".format(f_path))
+        # deploying locally
+        run_locally = getenv("run_locally", None)
+        if run_locally is None:
+            print(f"Deploying new_version from {archive_path}")
+            local(f"sudo mkdir -p {release_version}")
+            local(f"sudo tar -xzf {archive_path} \
+-C {release_version} --strip-components=1")
+            local(f"sudo rm -f {sym_link}")
+            local(f"sudo ln -s {release_version} {sym_link}")
+            environ['run_locally'] = "True"
+            print("Deployed locally\n")
 
+        put(archive_path, f"/tmp/{archive_name}")
+        run(f"mkdir -p {release_version}")
+        run(f"tar -xzf /tmp/{archive_name} \
+-C {release_version} --strip-components=1")
+        run(f"rm /tmp/{archive_name}")
+        run(f"rm -f {sym_link}")
+        run(f"ln -s {release_version} {sym_link}")
+        print(f"New Version Deployed --> {release_version}")
         return True
-
-    return False
+    except Exception as e:
+        print(f"Failed to Deploy New Version --> {release_version}\n{str(e)}")
+        return False
