@@ -36,7 +36,7 @@ file { '/etc/nginx/sites-available/default':
     content => 'server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name olisabelema.tech www.o;isabelema.tech;
+    server_name bigsteppers.tech www.bigsteppers.tech;
     root /var/www/html;
     index index.html index.htm index.nginx-debian.html;
 
